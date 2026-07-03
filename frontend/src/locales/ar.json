@@ -18,11 +18,22 @@
   },
   "form": {
     "add_title": "إضافة واصف جديد",
-    "edit_title": "تعديل ವಾصف",
+    "edit_title": "تعديل الواصف",
     "code_label": "الرمز",
     "name_label": "الاسم",
     "specialty_label": "التخصص",
     "required_error": "هذا الحقل مطلوب"
+  },
+  "excel": {
+    "errors_detected": "الأخطاء المكتشفة:",
+    "valid_data_preview": "معاينة البيانات الصالحة:",
+    "importing": "جاري الاستيراد...",
+    "validate_import": "تأكيد الاستيراد",
+    "missing_fields": "السطر {line}: حقول مفقودة (الرمز، الاسم أو التخصص)",
+    "duplicate_code": "السطر {line}: رمز مكرر في الملف ({code})",
+    "success_import": "تم الاستيراد بنجاح: إضافة {count}",
+    "import_error": "حدث خطأ أثناء الاستيراد",
+    "and_more": "... و {count} أسطر صالحة أخرى"
   },
   "messages": {
     "success_add": "تمت إضافة الواصف بنجاح",

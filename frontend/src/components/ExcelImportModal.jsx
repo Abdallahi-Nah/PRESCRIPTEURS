@@ -59,9 +59,9 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
                 }
                 
                 if (!code || !name || !specialite) {
-                    errs.push(`Ligne ${idx + 1}: Champs manquants (code, nom ou spécialité)`);
+                    errs.push(t('excel.missing_fields', { line: idx + 1 }));
                 } else if (valid.some(v => v.code === code)) {
-                    errs.push(`Ligne ${idx + 1}: Code doublon dans le fichier (${code})`);
+                    errs.push(t('excel.duplicate_code', { line: idx + 1, code }));
                 } else {
                     valid.push({ code, name, specialite });
                 }
@@ -82,19 +82,20 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
             formData.append('file', file);
             const res = await apiService.importPrescripteurs(formData);
             
-            toast.success(`Import réussi : ${res.data.insertedCount} ajoutés`);
+            toast.success(t('excel.success_import', { count: res.data.insertedCount }));
             
             if (res.data.errors && res.data.errors.length > 0) {
                 // Show backend errors (e.g. DB duplicates)
                 res.data.errors.forEach(err => {
-                    toast.error(`Ligne ${err.row}: ${err.message}`, { duration: 5000 });
+                    // For backend errors, we can just use the provided message or customize it if we add more backend keys
+                    toast.error(`${err.message} (Ligne ${err.row})`, { duration: 5000 });
                 });
             }
 
             onImportComplete();
             handleClose();
         } catch (error) {
-            toast.error(error.response?.data?.message || 'Erreur lors de l\'import');
+            toast.error(error.response?.data?.message || t('excel.import_error'));
         } finally {
             setIsUploading(false);
         }
@@ -121,7 +122,7 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
 
                 {localErrors.length > 0 && (
                     <div className="bg-red-50 p-4 rounded-md overflow-y-auto max-h-32 text-xs text-red-600">
-                        <p className="font-semibold mb-1">Erreurs détectées :</p>
+                        <p className="font-semibold mb-1">{t('excel.errors_detected')}</p>
                         <ul className="list-disc pl-5">
                             {localErrors.map((err, i) => (
                                 <li key={i}>{err}</li>
@@ -132,14 +133,14 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
 
                 {previewData.length > 0 && (
                     <div className="mt-4">
-                        <p className="text-sm font-medium text-gray-700 mb-2">Aperçu des données valides : ({previewData.length})</p>
+                        <p className="text-sm font-medium text-gray-700 mb-2">{t('excel.valid_data_preview')} ({previewData.length})</p>
                         <div className="overflow-y-auto max-h-48 border rounded-md">
                             <table className="min-w-full divide-y divide-gray-200 text-xs">
                                 <thead className="bg-gray-50">
                                     <tr>
-                                        <th className="px-3 py-2 text-left font-medium text-gray-500">Code</th>
-                                        <th className="px-3 py-2 text-left font-medium text-gray-500">Nom</th>
-                                        <th className="px-3 py-2 text-left font-medium text-gray-500">Spécialité</th>
+                                        <th className="px-3 py-2 text-left rtl:text-right font-medium text-gray-500">{t('columns.code')}</th>
+                                        <th className="px-3 py-2 text-left rtl:text-right font-medium text-gray-500">{t('columns.name')}</th>
+                                        <th className="px-3 py-2 text-left rtl:text-right font-medium text-gray-500">{t('columns.specialty')}</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -153,7 +154,7 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
                                     {previewData.length > 10 && (
                                         <tr>
                                             <td colSpan="3" className="px-3 py-2 text-center text-gray-500 italic">
-                                                ... et {previewData.length - 10} autres lignes valides
+                                                {t('excel.and_more', { count: previewData.length - 10 })}
                                             </td>
                                         </tr>
                                     )}
@@ -172,7 +173,7 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
                         onClick={handleSubmit} 
                         disabled={!file || isUploading}
                     >
-                        {isUploading ? 'Import...' : 'Valider l\'import'}
+                        {isUploading ? t('excel.importing') : t('excel.validate_import')}
                     </Button>
                 </div>
             </div>

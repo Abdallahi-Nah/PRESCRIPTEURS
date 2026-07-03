@@ -24,6 +24,17 @@
     "specialty_label": "Spécialité",
     "required_error": "Ce champ est obligatoire"
   },
+  "excel": {
+    "errors_detected": "Erreurs détectées :",
+    "valid_data_preview": "Aperçu des données valides :",
+    "importing": "Import...",
+    "validate_import": "Valider l'import",
+    "missing_fields": "Ligne {line} : Champs manquants (code, nom ou spécialité)",
+    "duplicate_code": "Ligne {line} : Code doublon dans le fichier ({code})",
+    "success_import": "Import réussi : {count} ajoutés",
+    "import_error": "Erreur lors de l'import",
+    "and_more": "... et {count} autres lignes valides"
+  },
   "messages": {
     "success_add": "Prescripteur ajouté avec succès",
     "success_edit": "Prescripteur mis à jour avec succès",

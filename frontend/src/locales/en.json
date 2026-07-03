@@ -24,6 +24,17 @@
     "specialty_label": "Specialty",
     "required_error": "This field is required"
   },
+  "excel": {
+    "errors_detected": "Errors detected:",
+    "valid_data_preview": "Valid data preview:",
+    "importing": "Importing...",
+    "validate_import": "Validate Import",
+    "missing_fields": "Line {line}: Missing fields (code, name or specialty)",
+    "duplicate_code": "Line {line}: Duplicate code in file ({code})",
+    "success_import": "Import successful: {count} added",
+    "import_error": "Error during import",
+    "and_more": "... and {count} other valid lines"
+  },
   "messages": {
     "success_add": "Prescriber added successfully",
     "success_edit": "Prescriber updated successfully",
