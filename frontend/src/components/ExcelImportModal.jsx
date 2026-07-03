@@ -44,6 +44,10 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
                 const name = row['nom_prescripteur'] || row['Nom'] || row['name'];
                 const specialite = row['specialite_prescripteur'] || row['Spécialité'] || row['Specialty'] || row['specialite'];
 
+                if (!code && !name && !specialite) {
+                    return; // silently ignore completely empty rows at the end of file
+                }
+                
                 if (!code || !name || !specialite) {
                     errs.push(`Ligne ${idx + 2}: Champs manquants (code, nom ou spécialité)`);
                 } else if (valid.some(v => v.code === code)) {

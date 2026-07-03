@@ -147,6 +147,10 @@ export const importPrescripteurs = async (req, res) => {
             const name = row['nom_prescripteur'] || row['Nom'] || row['name'];
             const specialite = row['specialite_prescripteur'] || row['Spécialité'] || row['Specialty'] || row['specialite'];
 
+            if (!code && !name && !specialite) {
+                continue; // Ignore blank lines
+            }
+
             if (!code || !name || !specialite) {
                 errors.push({ row: i + 2, message: 'Missing required fields (code, name, or specialty)' });
                 continue;
