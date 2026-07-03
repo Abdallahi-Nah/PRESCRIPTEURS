@@ -4,6 +4,7 @@ import { Search, Plus } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { getPrescripteurs, addPrescripteur, updatePrescripteur, deletePrescripteur, importPrescripteurs } from '../services/api';
+import Table from '../components/ui/Table';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import Modal from '../components/ui/Modal';
