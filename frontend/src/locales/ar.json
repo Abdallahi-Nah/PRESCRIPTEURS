@@ -1,0 +1,34 @@
+{
+  "app_title": "إدارة الواصفين",
+  "search_placeholder": "ابحث بالاسم أو الرمز...",
+  "add_prescripteur": "إضافة واصف",
+  "import_excel": "استيراد Excel",
+  "columns": {
+    "code": "الرمز",
+    "name": "الاسم",
+    "specialty": "التخصص",
+    "actions": "إجراءات"
+  },
+  "actions": {
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm_delete": "تأكيد الحذف"
+  },
+  "form": {
+    "add_title": "إضافة واصف جديد",
+    "edit_title": "تعديل ವಾصف",
+    "code_label": "الرمز",
+    "name_label": "الاسم",
+    "specialty_label": "التخصص",
+    "required_error": "هذا الحقل مطلوب"
+  },
+  "messages": {
+    "success_add": "تمت إضافة الواصف بنجاح",
+    "success_edit": "تم تحديث الواصف بنجاح",
+    "success_delete": "تم حذف الواصف بنجاح",
+    "delete_confirmation_text": "هل أنت متأكد أنك تريد حذف هذا الواصف؟",
+    "no_data": "لا توجد بيانات متاحة"
+  }
+}

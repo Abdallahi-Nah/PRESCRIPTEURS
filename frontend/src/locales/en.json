@@ -1,0 +1,34 @@
+{
+  "app_title": "Prescribers Management",
+  "search_placeholder": "Search by name or code...",
+  "add_prescripteur": "Add Prescriber",
+  "import_excel": "Import Excel",
+  "columns": {
+    "code": "Code",
+    "name": "Name",
+    "specialty": "Specialty",
+    "actions": "Actions"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm_delete": "Confirm Deletion"
+  },
+  "form": {
+    "add_title": "Add New Prescriber",
+    "edit_title": "Edit Prescriber",
+    "code_label": "Code",
+    "name_label": "Name",
+    "specialty_label": "Specialty",
+    "required_error": "This field is required"
+  },
+  "messages": {
+    "success_add": "Prescriber added successfully",
+    "success_edit": "Prescriber updated successfully",
+    "success_delete": "Prescriber deleted successfully",
+    "delete_confirmation_text": "Are you sure you want to delete this prescriber?",
+    "no_data": "No data available"
+  }
+}

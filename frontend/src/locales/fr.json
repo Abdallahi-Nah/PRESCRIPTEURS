@@ -1,0 +1,34 @@
+{
+  "app_title": "Gestion des Prescripteurs",
+  "search_placeholder": "Rechercher par nom ou code...",
+  "add_prescripteur": "Ajouter Prescripteur",
+  "import_excel": "Importer Excel",
+  "columns": {
+    "code": "Code",
+    "name": "Nom",
+    "specialty": "Spécialité",
+    "actions": "Actions"
+  },
+  "actions": {
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm_delete": "Confirmer la suppression"
+  },
+  "form": {
+    "add_title": "Ajouter un nouveau prescripteur",
+    "edit_title": "Modifier le prescripteur",
+    "code_label": "Code",
+    "name_label": "Nom",
+    "specialty_label": "Spécialité",
+    "required_error": "Ce champ est obligatoire"
+  },
+  "messages": {
+    "success_add": "Prescripteur ajouté avec succès",
+    "success_edit": "Prescripteur mis à jour avec succès",
+    "success_delete": "Prescripteur supprimé avec succès",
+    "delete_confirmation_text": "Êtes-vous sûr de vouloir supprimer ce prescripteur ?",
+    "no_data": "Aucune donnée disponible"
+  }
+}
