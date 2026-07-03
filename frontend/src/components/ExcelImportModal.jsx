@@ -61,7 +61,7 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
                 if (!code || !name || !specialite) {
                     errs.push(`Ligne ${idx + 1}: Champs manquants (code, nom ou spécialité)`);
                 } else if (valid.some(v => v.code === code)) {
-                    errs.push(`Ligne ${idx + 2}: Code doublon dans le fichier (${code})`);
+                    errs.push(`Ligne ${idx + 1}: Code doublon dans le fichier (${code})`);
                 } else {
                     valid.push({ code, name, specialite });
                 }

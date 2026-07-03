@@ -167,14 +167,14 @@ export const importPrescripteurs = async (req, res) => {
 
             // Check duplicate in file
             if (validPrescripteurs.some(p => p.code_prescripteur === String(code))) {
-                errors.push({ row: i + 2, message: 'Duplicate code in file' });
+                errors.push({ row: i + 1, message: 'Duplicate code in file' });
                 continue;
             }
 
             // Check duplicate in DB
             const existing = await Prescripteur.findOne({ code_prescripteur: String(code) });
             if (existing) {
-                errors.push({ row: i + 2, message: 'Code already exists in database' });
+                errors.push({ row: i + 1, message: 'Code already exists in database' });
                 continue;
             }
 
