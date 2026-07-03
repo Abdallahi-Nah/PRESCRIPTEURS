@@ -34,22 +34,32 @@ const ExcelImportModal = ({ isOpen, onClose, onImportComplete, apiService }) => 
             const wb = xlsx.read(bstr, { type: 'binary' });
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
-            const data = xlsx.utils.sheet_to_json(ws);
+            const data = xlsx.utils.sheet_to_json(ws, { header: 1 });
 
             const valid = [];
             const errs = [];
 
             data.forEach((row, idx) => {
-                const code = row['code_prescripteur'] || row['Code'] || row['code'];
-                const name = row['nom_prescripteur'] || row['Nom'] || row['name'];
-                const specialite = row['specialite_prescripteur'] || row['Spécialité'] || row['Specialty'] || row['specialite'];
+                // If it's an array, map by position. (0: code, 1: nom, 2: specialite)
+                let code = row[0];
+                let name = row[1];
+                let specialite = row[2];
+
+                // Skip header row if it exists
+                if (String(code).toLowerCase() === 'code' || String(code).toLowerCase() === 'code_prescripteur') {
+                    return;
+                }
+
+                code = String(code || '').trim();
+                name = String(name || '').trim();
+                specialite = String(specialite || '').trim();
 
                 if (!code && !name && !specialite) {
-                    return; // silently ignore completely empty rows at the end of file
+                    return; // silently ignore completely empty rows
                 }
                 
                 if (!code || !name || !specialite) {
-                    errs.push(`Ligne ${idx + 2}: Champs manquants (code, nom ou spécialité)`);
+                    errs.push(`Ligne ${idx + 1}: Champs manquants (code, nom ou spécialité)`);
                 } else if (valid.some(v => v.code === code)) {
                     errs.push(`Ligne ${idx + 2}: Code doublon dans le fichier (${code})`);
                 } else {

@@ -131,7 +131,7 @@ export const importPrescripteurs = async (req, res) => {
 
         const workbook = xlsx.read(req.file.buffer, { type: 'buffer' });
         const sheetName = workbook.SheetNames[0];
-        const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+        const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
 
         if (data.length === 0) {
             return res.status(400).json({ message: 'File is empty or incorrectly formatted' });
@@ -143,16 +143,25 @@ export const importPrescripteurs = async (req, res) => {
         // Validate rows
         for (let i = 0; i < data.length; i++) {
             const row = data[i];
-            const code = row['code_prescripteur'] || row['Code'] || row['code'];
-            const name = row['nom_prescripteur'] || row['Nom'] || row['name'];
-            const specialite = row['specialite_prescripteur'] || row['Spécialité'] || row['Specialty'] || row['specialite'];
+            
+            let code = row[0];
+            let name = row[1];
+            let specialite = row[2];
+
+            if (String(code).toLowerCase() === 'code' || String(code).toLowerCase() === 'code_prescripteur') {
+                continue;
+            }
+
+            code = String(code || '').trim();
+            name = String(name || '').trim();
+            specialite = String(specialite || '').trim();
 
             if (!code && !name && !specialite) {
                 continue; // Ignore blank lines
             }
 
             if (!code || !name || !specialite) {
-                errors.push({ row: i + 2, message: 'Missing required fields (code, name, or specialty)' });
+                errors.push({ row: i + 1, message: 'Missing required fields (code, name, or specialty)' });
                 continue;
             }
 
