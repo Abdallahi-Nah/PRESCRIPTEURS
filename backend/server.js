@@ -13,26 +13,7 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Init Middleware
-const allowedOrigins = [
-    'https://prescripteurs.vercel.app',
-    'http://localhost:5173',
-    'http://localhost:3000'
-];
-
-app.use(cors({
-    origin: (origin, callback) => {
-        // Allow requests with no origin
-        if (!origin) return callback(null, true);
-        
-        // Allow anything from allowedOrigins OR any .vercel.app dynamic preview environments
-        if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
-            return callback(null, true);
-        }
-        callback(new Error(`Not allowed by CORS: ${origin}`));
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
 // Routes
